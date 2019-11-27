@@ -241,7 +241,7 @@ where we stack the vector <img src="svgs/27ad4bcb9a515705743055d231c7d7c5.svg?in
 Combining our two matrix expressions together we can write <img src="svgs/9674605b99e37d0dbca0fc51ec6b1bc7.svg?invert_in_darkmode&sanitize=true" align=middle width=13.08219pt height=30.2676pt/> entirely
 in matrix form:
 
-<p align="center"><img src="svgs/2d6afb474ce290f521547846d66be9cc.svg?invert_in_darkmode&sanitize=true" align=middle width=684.4035pt height=101.004585pt/></p>
+<p align="center"><img src="svgs/47459112f4abfefefe85e875abf55d92.svg?invert_in_darkmode&sanitize=true" align=middle width=684.4035pt height=73.377645pt/></p>
 
 > **Question:** Why do we not bother to write out the terms that are constant with
 > respect to <img src="svgs/980fcd4213d7b5d2ffcc82ec78c27ead.svg?invert_in_darkmode&sanitize=true" align=middle width=10.50225pt height=14.61207pt/>?

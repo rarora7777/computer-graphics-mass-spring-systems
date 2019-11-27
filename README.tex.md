@@ -300,8 +300,7 @@ Combining our two matrix expressions together we can write $\tilde{E}$ entirely
 in matrix form:
 
 $$\begin{align*}
-\tilde{E}(\mathbf{p}) &\\
-&= \frac{k}{2} \mathop\text{tr}(\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d}) + 
+\tilde{E}(\mathbf{p}) &= \frac{k}{2} \mathop\text{tr}(\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d}) + 
 \tr{
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
 } 
