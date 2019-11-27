@@ -56,41 +56,41 @@ sed -i 's/\\z[^A-Za-z]/\\mathbf\{z\}/g' $1
 sed -i 's/\\0[^A-Za-z]/\\mathbf\{0\}/g' $1
 sed -i 's/\\v[^A-Za-z]/\\mathbf\{v\}/g' $1
 sed -i 's/\\hat[^A-Za-z]/\\widehat/g' $1
-sed -i 's/∈/\\in/g' $1
-sed -i 's/³/\^3/g' $1
-sed -i 's/½/\\frac12/g' $1
-sed -i 's/∂/\\partial/g' $1
-sed -i 's/∆/\\Delta/g' $1
-sed -i 's/²/\^2/g' $1
-sed -i 's/‖/\\|/g' $1
-sed -i 's/↔/\\Leftrightarrow/g' $1
-sed -i 's/→/\\Rightarrow/g' $1
-sed -i 's/∀/\\forall/g' $1
-sed -i 's/θ/\theta/g' $1
-sed -i 's/Θ/\Theta/g' $1
-sed -i 's/₁/\_1/g' $1
-sed -i 's/₂/\_2/g' $1
-sed -i 's/₃/\_3/g' $1
-sed -i 's/φ/\\varphi/g' $1
-sed -i 's/°/\^\\circ/g' $1
-sed -i 's/←/\\Leftarrow/g' $1
-sed -i 's/σ/\\sigma/g' $1
-sed -i 's/⁰/\^0/g' $1
-sed -i 's/δ/\\delta/g' $1
-sed -i 's/ε/\\epsilon/g' $1
-sed -i 's/≈/\\approx/g' $1
-sed -i 's/∑/\\Sigma/g' $1
-sed -i 's/∞/\\infty/g' $1
-sed -i 's/Σ/\\sigma/g' $1
-sed -i 's/Ω/\\Omega/g' $1
-sed -i 's/π/\\pi/g' $1
-sed -i 's/ψ/\\psi/g' $1
-sed -i 's/≠/\\ne/g' $1
-sed -i 's/∫/\\int/g' $1
-sed -i 's/∆/\\Delta/g' $1
-sed -i 's/∆/\\Delta/g' $1
-sed -i 's/±/\\pm/g' $1
-sed -i 's/≥/\\ge/g' $1
-sed -i 's/≤/\\le/g' $1
-sed -i 's/×/\\times/g' $1
+sed -i 's/∈/\\in /g' $1
+sed -i 's/³/\^3 /g' $1
+sed -i 's/½/\\frac12 /g' $1
+sed -i 's/∂/\\partial /g' $1
+sed -i 's/∆/\\Delta /g' $1
+sed -i 's/²/\^2 /g' $1
+sed -i 's/‖/\\| /g' $1
+sed -i 's/↔/\\Leftrightarrow /g' $1
+sed -i 's/→/\\Rightarrow /g' $1
+sed -i 's/∀/\\forall /g' $1
+sed -i 's/θ/\theta /g' $1
+sed -i 's/Θ/\Theta /g' $1
+sed -i 's/₁/\_1 /g' $1
+sed -i 's/₂/\_2 /g' $1
+sed -i 's/₃/\_3 /g' $1
+sed -i 's/φ/\\varphi /g' $1
+sed -i 's/°/\^\\circ /g' $1
+sed -i 's/←/\\Leftarrow /g' $1
+sed -i 's/σ/\\sigma /g' $1
+sed -i 's/⁰/\^0 /g' $1
+sed -i 's/δ/\\delta /g' $1
+sed -i 's/ε/\\epsilon /g' $1
+sed -i 's/≈/\\approx /g' $1
+sed -i 's/∑/\\Sigma /g' $1
+sed -i 's/∞/\\infty /g' $1
+sed -i 's/Σ/\\sigma /g' $1
+sed -i 's/Ω/\\Omega /g' $1
+sed -i 's/π/\\pi /g' $1
+sed -i 's/ψ/\\psi /g' $1
+sed -i 's/≠/\\ne /g' $1
+sed -i 's/∫/\\int /g' $1
+sed -i 's/∆/\\Delta /g' $1
+sed -i 's/∆/\\Delta /g' $1
+sed -i 's/±/\\pm /g' $1
+sed -i 's/≥/\\ge /g' $1
+sed -i 's/≤/\\le /g' $1
+sed -i 's/×/\\times /g' $1
 #sed -i 's///g' $1
