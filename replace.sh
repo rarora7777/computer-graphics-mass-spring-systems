@@ -67,7 +67,7 @@ sed -i 's/\\N$/\\mathbf\{N\}/g' $1
 sed -i 's/\\One$/\\mathbf\{1\}/g' $1
 sed -i 's/\\P$/\\mathbf\{P\}/g' $1
 sed -i 's/\\Q$/\\mathbf\{Q\}/g' $1
-sed -i 's/\\R$/\\mathbf\{R\}/g' $1
+sed -i 's/\\R$/\\mathbb\{R\}/g' $1
 sed -i 's/\\S$/\\mathbf\{S\}/g' $1
 sed -i 's/\\T$/\\mathbf\{T\}/g' $1
 sed -i 's/\\U$/\\mathbf\{U\}/g' $1
@@ -104,11 +104,13 @@ sed -i 's/\\0$/\\mathbf\{0\}/g' $1
 #Operators
 sed -i 's/\\vec\([^A-Za-z]\)/\\mathbf\1/g' $1
 sed -i 's/\\mat\([^A-Za-z]\)/\\mathbf\1/g' $1
+sed -i 's/\\Rot\([^A-Za-z]\)/\\mathbf\{R\}\1/g' $1
 sed -i 's/\\min\([^A-Za-z]\)/\\mathop\{\\text\{min\}\}\1/g' $1
 sed -i 's/\\argmax\([^A-Za-z]\)/\\mathop\{\\text\{argmax\}\}\1/g' $1
 sed -i 's/\\argmin\([^A-Za-z]\)/\\mathop\{\\text\{argmin\}\}\1/g' $1
 sed -i 's/\\transpose\([^A-Za-z]\)/\{\\mathsf T\}\1/g' $1
-sed -i 's/\\tr\([^A-Za-z]\)/\\mathop\{\\text\{tr\}\}\1/g' $1
+#sed -i 's/\\tr\([^A-Za-z]\)/\\mathop\{\\text\{tr\}\}\1/g' $1
+perl -pi -e 's/\\tr\s*(\{((?:[^{}]++|(?1))*)\})/\\mathop\\text\{tr\}\2/g' $1
 
 #Special characters
 sed -i 's/∈/\\in /g' $1
@@ -121,8 +123,8 @@ sed -i 's/‖/\\| /g' $1
 sed -i 's/↔/\\Leftrightarrow /g' $1
 sed -i 's/→/\\Rightarrow /g' $1
 sed -i 's/∀/\\forall /g' $1
-sed -i 's/θ/\theta /g' $1
-sed -i 's/Θ/\Theta /g' $1
+sed -i 's/θ/\\theta /g' $1
+sed -i 's/Θ/\\Theta /g' $1
 sed -i 's/₁/\_1 /g' $1
 sed -i 's/₂/\_2 /g' $1
 sed -i 's/₃/\_3 /g' $1
@@ -150,6 +152,7 @@ sed -i 's/≤/\\le /g' $1
 sed -i 's/×/\\times /g' $1
 sed -i 's/…/\\ldots/g' $1
 sed -i 's/…/\\ldots/g' $1
+sed -i 's/⋅/\\cdot/g' $1
 #sed -i 's///g' $1
 
 # Alec's escaped chars
