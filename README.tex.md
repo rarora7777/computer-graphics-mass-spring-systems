@@ -1,6 +1,6 @@
 # Computer Graphics – Mass-Spring Systems
 
-> **To get started:** Clone this repository using
+> **To get started:** Clone this repository using 
 > 
 >     git clone --recursive http://github.com/alecjacobson/computer-graphics-mass-spring-systems.git
 >
