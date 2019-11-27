@@ -31,8 +31,8 @@ current state, we can be sure of what the next state will be (at least at the
 scales we're considering). This will also be true of our physical simulation.
 
 The law that we start with is Newton's second law, which states that the forces
-<img src="svgs/6337ee87446dee40530f55558466bedc.svg?invert_in_darkmode" align=middle width=48.39021pt height=26.76201pt/> acting on a body must equal its mass <img src="svgs/0e51a2dede42189d77627c4d742822c3.svg?invert_in_darkmode" align=middle width=14.43321pt height=14.15535pt/> times its acceleration
-<img src="svgs/29a223b1732e4aa561aec5a87741a53d.svg?invert_in_darkmode" align=middle width=50.01117pt height=26.76201pt/>:
+<img src="svgs/6337ee87446dee40530f55558466bedc.svg?invert_in_darkmode&sanitize=true" align=middle width=48.39021pt height=26.76201pt/> acting on a body must equal its mass <img src="svgs/0e51a2dede42189d77627c4d742822c3.svg?invert_in_darkmode&sanitize=true" align=middle width=14.43321pt height=14.15535pt/> times its acceleration
+<img src="svgs/29a223b1732e4aa561aec5a87741a53d.svg?invert_in_darkmode&sanitize=true" align=middle width=50.01117pt height=26.76201pt/>:
 
 
 <p align="center"><img src="svgs/2f4cd85a2f21158bb638f242fd22b4f8.svg?invert_in_darkmode" align=middle width=57.67476pt height=11.415525pt/></p>
