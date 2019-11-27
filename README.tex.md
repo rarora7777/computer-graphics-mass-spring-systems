@@ -31,17 +31,17 @@ current state, we can be sure of what the next state will be (at least at the
 scales we're considering). This will also be true of our physical simulation.
 
 The law that we start with is Newton's second law, which states that the forces
-$\f ∈ \R³$ acting on a body must equal its mass $m$ times its acceleration
-$\vec{a}∈\R³$:
+$\mathbf{f}\in \mathbf{R}$ acting on a body must equal its mass $m$ times its acceleration
+$\mathbf{a}\mathbf{R}$:
 
 
 $$
-\f = m \vec{a}.
+\mathbf{f}= m \mathbf{a}
 $$
 
-Notice that $\f$ and $\vec{a}$ are vectors, each having a magnitude and a direction.
+Notice that $\mathbf{f} and $\mathbf{a} are vectors, each having a magnitude and a direction.
 We will build our computational simulation by asking for this equation to be
-true for each point mass  in our network. The forces $\f_i$ acting on the $i$-th point
+true for each point mass  in our network. The forces $\mathbf{f}i$ acting on the $i$-th point
 mass are simply the sum of forces coming from any incident spring edge $ij$ and
 any external force (such as gravity).
 
@@ -52,12 +52,12 @@ force](https://en.wikipedia.org/wiki/Elasticity_(physics))), decreasing its
 potential energy as fast as possible. The force is the negative gradient of the potential
 energy.
 
-A simple spring is defined by its stiffness $k>0$ and _rest_ length $r_{ij} ∈ \R$.
+A simple spring is defined by its stiffness $k>0$ and _rest_ length $r_{ij} \in \mathbf{R}.
 Its potential energy measures the squared difference of the current length and
 the rest length times the stiffness:
 
 $$
-V(\p_i,\p_j) = ½k( ‖\p_i - \p_j‖ - r_{ij} )^2.
+V(\mathbf{p}i,\mathbf{p}j) = \frac12k( \|\mathbf{p}i - \mathbf{p}j\| - r_{ij} )^2.
 $$
 
 ![](images/potential-energy.png)
@@ -65,28 +65,28 @@ $$
 The force exerted by the spring on each mass is the [partial
 derivative](https://en.wikipedia.org/wiki/Partial_derivative) of the potential
 energy $V$ with respect to the corresponding mass position. For example, for
-$\p_i$ we have
+$\mathbf{p}i$ we have
 
 $$
-\f\_{ij} = -\frac{∂V}{∂\p\_i} ∈ \R\^3.
+\mathbf{f}_{ij} = -\frac{\partialV}{\partial\mathbf{p}_i} \in \mathbf{R}^3.
 $$
 
-For now, we can postpone expanding $∂V/∂\p_i$, and just recognize that it is a
+For now, we can postpone expanding $\partialV/\partial\mathbf{p}i$, and just recognize that it is a
 3D vector. 
 
 Our problem is to determine _where_ all of the mass will be after a small
-duration in time ($∆t$). 
+duration in time ($\Deltat$). 
 
-> **Question:** What is a reasonable choice for the value of $∆t$ ?
+> **Question:** What is a reasonable choice for the value of $\Deltat$ ?
 >
 > **Hint:** 🎞️ or 🖥️
 >
 
 We'll assume we know the current positions for each
-mass $\p^t_i∈\R^3$ at the current time ($t$) and the current velocities
-$\dot{\p}^t_i = ∂\p_i(t)/∂t ∈\R^3$. When $t=0$ then we call these the [initial
+mass $\mathbf{p}t_i\in\mathbf{R}3$ at the current time ($t$) and the current velocities
+$\dot{\mathbf{p}^t_i = \partial\mathbf{p}i(t)/\partialt \in\mathbf{R}3$. When $t=0$ then we call these the [initial
 conditions](https://en.wikipedia.org/wiki/Initial_condition) of the entire
-simulation. For $t≥0$, we can still think of these values as the initial
+simulation. For $t\ge0$, we can still think of these values as the initial
 conditions for the remaining time.
 
 In the real world, the trajectory of an object follows a continuous curve as a
@@ -95,67 +95,67 @@ pass at [discrete moments in
 time](https://en.wikipedia.org/wiki/Discrete_time_and_continuous_time). We use
 this to build discrete approximation of the time derivatives (velocities and
 accelerations) that we encounter. Immediately, we can replace the current
-velocties $\dot{\p}^t_i$ with a _backward_ [finite
+velocties $\dot{\mathbf{p}^t_i$ with a _backward_ [finite
 difference](https://en.wikipedia.org/wiki/Finite_difference) of the positions
 over the small time step:
 
 $$
-\dot{\p}\^t_i = \frac{\p\^t_i - \p\^{t-∆t}_i}{∆t}
+\dot{\mathbf{p}\^t_i = \frac{\mathbf{p}^t_i - \mathbf{p}^{t-\Deltat}_i}{\Deltat}
 $$
-where $\p^{t-∆t}_i ∈ \R^3$ is the position at the _previous_ time.
+where $\mathbf{p}{t-\Deltat}_i \in \mathbf{R}3$ is the position at the _previous_ time.
 
 We can also use a _central_ finite difference to define the acceleration at time
 $t$:
 
 $$
-\vec{a}_i\^t = 
-\ddot{\p}\^t\_i = 
-\frac{∂²\p\_i(t)}{∂t²} = 
-\frac{\dot{\p}\^{t+∆t}\_i - \dot{\p}\^{t}\_i}{∆t} =
-\frac{\p\^{t+∆t}\_i - \p\^{t}\_i}{∆t}
--\frac{\p\^t\_i - \p\^{t-∆t}\_i}{∆t}=
-\frac{\p\^{t+∆t}\_i - 2 \p\^{t}\_i + \p\^{t-∆t}}{∆t²}.
+\mathbf{a}i\^t = 
+\ddot{\mathbf{p}\^t\_i = 
+\frac{\partial^2\mathbf{p}_i(t)}{\partialt^2} = 
+\frac{\dot{\mathbf{p}\^{t+\Deltat}\_i - \dot{\mathbf{p}\^{t}\_i}{\Deltat} =
+\frac{\mathbf{p}^{t+\Deltat}\_i - \mathbf{p}^{t}\_i}{\Deltat}
+-\frac{\mathbf{p}^t\_i - \mathbf{p}^{t-\Deltat}\_i}{\Deltat}=
+\frac{\mathbf{p}^{t+\Deltat}\_i - 2 \mathbf{p}^{t}\_i + \mathbf{p}^{t-\Deltat}}{\Deltat^2}.
 $$
 
-This expression mentions our _unknown_ variables $\p^{t+∆t}_i$ for the first
+This expression mentions our _unknown_ variables $\mathbf{p}{t+\Deltat}_i$ for the first
 time. We'll soon that based on definition of the potential spring energy above
 and the acceleration here we can _solve_ for the values of these unknown
 variables.
 
 ### Time integration as energy optimization
 
-In the equation $\f = m \vec{a}$, the acceleration term $\vec{a}$ depends _linearly_ on the
-unknowns $\p^{t+∆t}$. Unfortunately, even for a simple spring the forces $\f =
-∂V/∂\p^{t+∆t}$ depend _non-linearly_ on $\p^{t+∆t}$. This means we have a
+In the equation $\mathbf{f}= m \mathbf{a}, the acceleration term $\mathbf{a} depends _linearly_ on the
+unknowns $\mathbf{p}{t+\Deltat}$. Unfortunately, even for a simple spring the forces $\mathbf{f}=
+\partialV/\partial\mathbf{p}{t+\Deltat}$ depend _non-linearly_ on $\mathbf{p}{t+\Deltat}$. This means we have a
 _non-linear_ system of equations, which can be tricky to satisfy directly.
 
 <!--
 If we expanded this as an expression, we
 might write:
 $$
-\frac{∂ V(\p^{t+∆t})}{∂ \p} = 
-\M \left(
-\frac{\p\^{t+∆t}\_i - 2 \p\^{t}\_i + \p\^{t-∆t}}{∆t²}.
+\frac{\partial V(\mathbf{p}{t+\Deltat})}{\partial \mathbf{p} = 
+\mathbf{M}\left(
+\frac{\mathbf{p}^{t+\Deltat}\_i - 2 \mathbf{p}^{t}\_i + \mathbf{p}^{t-\Deltat}}{\Deltat^2}.
 $$
 -->
 
-> **Question:** We've _chosen_ to define $\f$ as the forces that implicitly
-> depend on the unknown positions $\p^{t+∆t}$ at the end of the
-> time step $t+∆t$. What would happen if we defined the forces to explicitly
-> depend on the (known) current positions $\p^t$?
+> **Question:** We've _chosen_ to define $\mathbf{f} as the forces that implicitly
+> depend on the unknown positions $\mathbf{p}{t+\Deltat}$ at the end of the
+> time step $t+\Deltat$. What would happen if we defined the forces to explicitly
+> depend on the (known) current positions $\mathbf{p}t$?
 
 An alternative is to view physics simulation as an optimization problem. We
-will define an energy that will be minimized by the value of $\p^{t+∆t}$ that
-satisfies $\f = m \vec{a}$. The minimizer $\p$ of some function $E(x)$ will satisfy
-$∂E/∂\p = 0$. So we construct an energy $E$ such that $∂E/∂\p = \f - m\vec{a}$:
+will define an energy that will be minimized by the value of $\mathbf{p}{t+\Deltat}$ that
+satisfies $\mathbf{f}= m \mathbf{a}. The minimizer $\mathbf{p} of some function $E(x)$ will satisfy
+$\partialE/\partial\mathbf{p}= 0$. So we construct an energy $E$ such that $\partialE/\partial\mathbf{p}= \mathbf{f}- m\mathbf{a}:
 
 $$
-\p\^{t+∆t} = \vec{a}rgmin_\p
+\mathbf{p}^{t+\Deltat} = \mathop{\text{argmin}}\p
 \underbrace{
-\left(\sum\limits_{ij} ½k( ‖\p_i-\p_j‖ - r_{ij})\^2\right)  - 
-∆t\^2 \left(\sum\limits_i m_i \left(\frac{\p\_i - 2 \p\^{t}\_i + \p_i\^{t-∆t}}{∆t²}\right)\^2 \right) - 
-\left(\sum\limits_i \p_i^\top \f^\text{ext}_i \right)
-}_{E(\p)}
+\left(\sum\limits_{ij} \frac12k( \|\mathbf{p}i-\mathbf{p}j\| - r_{ij})\^2\right)  - 
+\Deltat\^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}\_i + \mathbf{p}i\^{t-\Deltat}}{\Deltat^2}\right)\^2 \right) - 
+\left(\sum\limits_i \mathbf{p}i^\top \mathbf{f}\text{ext}_i \right)
+}_{E(\mathbf{p}}
 $$ 
 
 Keen observers will identify that the first term is potential energy and the
@@ -165,7 +165,7 @@ the first term as trying to return the spring to rest length (elasticity) and
 the second term as trying to keep masses [moving in the same
 direction](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton%27s_first_law). 
 
-Because of the $‖\p_i-\p_j‖ - r_{ij}$ term, minimizing $E$ is a non-linear
+Because of the $\|\mathbf{p}i-\mathbf{p}j\| - r_{ij}$ term, minimizing $E$ is a non-linear
 optimization problem. The standard approach would be to apply [gradient
 descent](https://en.wikipedia.org/wiki/Gradient_descent) (slow), [Gauss-Newton
 method](https://en.wikipedia.org/wiki/Gauss–Newton_algorithm), or [Newton's
@@ -179,46 +179,46 @@ minimize $E$ quite simple and fast. For each spring $ij$, they observe that the
 non-linear energy can be written as a small optimization problem:
 
 $$
-(‖\p_i - \p_j‖ - r_{ij})\^2  = \min_{\d_{ij}∈\R\^3,‖\d‖ = r_{ij}} ‖(\p_i - \p_j) - \d_{ij}‖\^2.
+(\|\mathbf{p}i - \mathbf{p}j\| - r_{ij})\^2  = \mathop{\text{min}}{\mathbf{d}{ij}\in\mathbf{R}^3,\|\mathbf{d} = r_{ij}} \|(\mathbf{p}i - \mathbf{p}j) - \mathbf{d}{ij}\|\^2.
 $$
 
 It may seem like we've just created extra work. We took a closed-form expression 
 (left) and replaced it with an optimization problem (right). Yet this
-optimization problem is small ($\d_{ij}$ is a single 3D vector) and can be
+optimization problem is small ($\mathbf{d}{ij}$ is a single 3D vector) and can be
 easily solved _independently_ (and even in parallel) for each spring (i.e.,
-$\d_{ij}$ doesn't depend on $\d_{\ell k}$ etc.). Reading the right-hand side in
+$\mathbf{d}{ij}$ doesn't depend on $\mathbf{d}{\ell k}$ etc.). Reading the right-hand side in
 English it says, find the vector of length $r_{ij}$ that is as close as possible
-to the current spring vector $\p_i - \p_j$. 
+to the current spring vector $\mathbf{p}i - \mathbf{p}j$. 
 
 ![](images/dij-rij-closest-vector.png)
 
 
-Now, suppose we somehow _knew already_ the vector $\d_{ij}$ corresponding to the
-_unknown_ optimal solution $\p^{t+∆t}$, then treating $\d_{ij}$ as a _constant_ we could
+Now, suppose we somehow _knew already_ the vector $\mathbf{d}{ij}$ corresponding to the
+_unknown_ optimal solution $\mathbf{p}{t+\Deltat}$, then treating $\mathbf{d}{ij}$ as a _constant_ we could
 find the optimal solution by solving the _quadratic_ optimization problem:
 
 $$
-\p\^{t+∆t} = \vec{a}rgmin_\p
+\mathbf{p}^{t+\Deltat} = \mathop{\text{argmin}}\p
 \underbrace{
-\left(\sum\limits_{ij} ½k‖(\p_i-\p_j) - \d_{ij}‖\^2\right)  - 
-∆t\^2 \left(\sum\limits_i m_i \left(\frac{\p\_i - 2 \p\^{t}\_i + \p_i\^{t-∆t}}{∆t²}\right)\^2 \right) -
-\left(\sum\limits_i \p_i^\top \f^\text{ext}_i \right)
-}_{\tilde{E}(\p)}.
+\left(\sum\limits_{ij} \frac12k\|(\mathbf{p}i-\mathbf{p}j) - \mathbf{d}{ij}\|\^2\right)  - 
+\Deltat\^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}\_i + \mathbf{p}i\^{t-\Deltat}}{\Deltat^2}\right)\^2 \right) -
+\left(\sum\limits_i \mathbf{p}i^\top \mathbf{f}\text{ext}_i \right)
+}_{\tilde{E}(\mathbf{p}}.
 $$ 
 
-The modified energy $\tilde{E}(\p)$ is _quadratic_ with respect to the unknowns
-$\p$, therefore the solution is found when we set the first derivative equal to
+The modified energy $\tilde{E}(\mathbf{p}$ is _quadratic_ with respect to the unknowns
+$\mathbf{p}, therefore the solution is found when we set the first derivative equal to
 zero: 
 
 $$
-\frac{d\tilde{E}}{d\p} = 0.
+\frac{d\tilde{E}}{d\mathbf{p} = 0.
 $$
 
 This leads to a straightforward "local-global" iterative algorithm:
 
- - Step 1 (local): Given current values of $\p$ determine $\d_{ij}$ for each
+ - Step 1 (local): Given current values of $\mathbf{p} determine $\mathbf{d}{ij}$ for each
    spring.
- - Step 2 (global): Given all $\d_{ij}$ vectors, find positions $\p$ that
+ - Step 2 (global): Given all $\mathbf{d}{ij}$ vectors, find positions $\mathbf{p} that
    minimize quadratic energy $\tilde{E}$.
  - Step 3: if "not satisfied", go to Step 1.
 
@@ -236,124 +236,124 @@ Step 2 on the otherhand involves all springs simultaneously.
 [Matrices](https://en.wikipedia.org/wiki/Matrix_(mathematics)) are our
 convenient notation for representing both the [linear
 operators](https://en.wikipedia.org/wiki/Linear_operator) (e.g., in the equation
-$\frac{d\tilde{E}}{d\p} = 0$) and the [quadratic
+$\frac{d\tilde{E}}{d\mathbf{p} = 0$) and the [quadratic
 forms](https://en.wikipedia.org/wiki/Quadratic_form) (e.g., in the energy
 $\tilde{E}$).
 
 Let's begin by being precise about some notation. We will stack up all of the
-$n$ unknown mass positions $\p_i ∈ \R^3$ as the rows of a matrix $\p∈\R^{n×3}$.
+$n$ unknown mass positions $\mathbf{p}i \in \mathbf{R}3$ as the rows of a matrix $\mathbf{p}\mathbf{R}{n\times3}$.
 We can do the same for the _known_ previous time steps' positions
-$\p^{t},\p^{t-∆t}∈\R^{n×3}$.
+$\mathbf{p}{t},\mathbf{p}{t-\Deltat}\in\mathbf{R}{n\times3}$.
 
 We can then express the inertial term using matrices:
 $$
-∆t\^2 \left(\sum\limits_i m_i \left(\frac{\p\_i - 2 \p\^{t}\_i - \p_i\^{t-∆t}}{∆t²}\right)\^2 \right) = \\\\
-\frac{1}{∆t\^2} \left(\sum\limits_i 
-\left(\p\_i - 2 \p\^{t}\_i - \p_i\^{t-∆t}\right)^\top
+\Deltat\^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}\_i - \mathbf{p}i\^{t-\Deltat}}{\Deltat^2}\right)\^2 \right) = \\\\
+\frac{1}{\Deltat\^2} \left(\sum\limits_i 
+\left(\mathbf{p}_i - 2 \mathbf{p}^{t}\_i - \mathbf{p}i\^{t-\Deltat}\right)^\top
 m_i
-\left(\p\_i - 2 \p\^{t}\_i - \p_i\^{t-∆t}\right)
+\left(\mathbf{p}_i - 2 \mathbf{p}^{t}\_i - \mathbf{p}i\^{t-\Deltat}\right)
 \right) = \\\\
-\frac{1}{∆t\^2} 
-\tr{
-\left(\p - 2\p\^{t} + \p\^{t-∆t}\right)^\top \M \left(\p - 2\p\^{t} + \p\^{t-∆t}\right)
+\frac{1}{\Deltat\^2} 
+\mathop{\text{tr}}
+\left(\mathbf{p}- 2\mathbf{p}^{t} + \mathbf{p}^{t-\Deltat}\right)^\top \mathbf{M}\left(\mathbf{p}- 2\mathbf{p}^{t} + \mathbf{p}^{t-\Deltat}\right)
 },
 $$
 
-where $\tr{\X}$ computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of $\X$ (sums up the diagonal entries: $\X_{11}+\X_{22}+\dots$).
+where $\mathop{\text{tr}}\mathbf{X}$ computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of $\mathbf{X} (sums up the diagonal entries: $\mathbf{X}{11}+\mathbf{X}{22}+\dots$).
 
-and the entries of the square matrix $\M∈\R^{n×n}$ are set to 
+and the entries of the square matrix $\mathbf{M}\mathbf{R}{n\timesn}$ are set to 
 
-$$\M_{ij} = \begin{cases} m_{i} & \text{ if $i=j$ } \\\\
+$$\mathbf{M}{ij} = \begin{cases} m_{i} & \text{ if $i=j$ } \\\\
 0 & \text{ otherwise.} \end{cases}.$$
 
 The potential energy term can be similarly written with matrices. We'll start by
 introducing the _signed incidence_ matrix of our mass-psring network of $n$
-vertices and $m$ edges $\A∈\R^{m × n}$. The _rows_ of $\A$ correspond to an arbitrary
+vertices and $m$ edges $\mathbf{A}\mathbf{R}{m \times n}$. The _rows_ of $\mathbf{A} correspond to an arbitrary
 (but fixed) ordering of the edges in the network. In a mass-spring network, the
 edges are un-oriented in the sense that the spring acts symmetrically on its
 vertices. For convenience, we'll pick an orientation for edge anyway. For the
 $e$-th edge $ij$, we should be sure to use the same orientation when computing
-$\d_{ij}$ and for the following entries of $\A$. So, for the $e$-th row of $\A$
+$\mathbf{d}{ij}$ and for the following entries of $\mathbf{A}. So, for the $e$-th row of $\mathbf{A}
 corresponding to edge connecting vertices $i$ and $j$ we'll assign values:
 
-$$\A_{ek} = \begin{cases} +1 & \text{ if $k=i$ } \\\\
+$$\mathbf{A}{ek} = \begin{cases} +1 & \text{ if $k=i$ } \\\\
 -1 & \text{ else if $k==j$ } \\\\
 0 & \text{ otherwise.} \end{cases}$$
 
-Using this matrix $\A$ as a linear operator we can compute the spring vectors for
+Using this matrix $\mathbf{A} as a linear operator we can compute the spring vectors for
 each edge:
 
 $$
-\v = \A \p  ↔ \v_{ij} = \p_i - \p_j.
+\mathbf{v}= \mathbf{A}\mathbf{p} \Leftrightarrow \mathbf{v}{ij} = \mathbf{p}i - \mathbf{p}j.
 $$
 
 We can now write the modified potential energy of $\tilde{E}$ in matrix form:
 
 $$
-\left(\sum\limits_{ij} ½k‖(\p_i-\p_j) - \d_{ij}‖\^2\right)  = \\\\
-\frac{k}{2} \tr{(\A \p - \d)^\top (\A \p - \d)},
+\left(\sum\limits_{ij} \frac12k\|(\mathbf{p}i-\mathbf{p}j) - \mathbf{d}{ij}\|\^2\right)  = \\\\
+\frac{k}{2} \mathop{\text{tr}}(\mathbf{A}\mathbf{p}- \mathbf{d}^\top (\mathbf{A}\mathbf{p}- \mathbf{d}},
 $$
-where we stack the vector $\d_{ij}$ for each edge in the corresponding rows of $\d∈\R^{m × 3}$.
+where we stack the vector $\mathbf{d}{ij}$ for each edge in the corresponding rows of $\mathbf{d}\mathbf{R}{m \times 3}$.
 
 
 Combining our two matrix expressions together we can write $\tilde{E}$ entirely
 in matrix form:
 
-$$\tilde{E}(\p) = \\\\
-\frac{k}{2} \tr{(\A \p - \d)^\top (\A \p - \d)} + 
-\tr{
-\left(\p - 2\p\^{t} + \p\^{t-∆t}\right)^\top \M \left(\p - 2\p\^{t} + \p\^{t-∆t}\right)
+$$\tilde{E}(\mathbf{p} = \\\\
+\frac{k}{2} \mathop{\text{tr}}(\mathbf{A}\mathbf{p}- \mathbf{d}^\top (\mathbf{A}\mathbf{p}- \mathbf{d}} + 
+\mathop{\text{tr}}
+\left(\mathbf{p}- 2\mathbf{p}^{t} + \mathbf{p}^{t-\Deltat}\right)^\top \mathbf{M}\left(\mathbf{p}- 2\mathbf{p}^{t} + \mathbf{p}^{t-\Deltat}\right)
 } 
-\tr{\p^\top \f^\text{ext}} = \\\\
-\frac{1}{2} \tr{ \p^\top (k \A^\top \A + \frac{1}{∆t²}\M) \p }
-- \tr{\p^\top(k \A^\top \d + \frac{1}{∆t²}\M (2\p\^t - \p\^{t-∆t}) + \f^\text{ext})} + \text{ constants }.
+\mathop{\text{tr}}\mathbf{p}\top \mathbf{f}\text{ext}} = \\\\
+\frac{1}{2} \mathop{\text{tr}} \mathbf{p}\top (k \mathbf{A}\top \mathbf{A}+ \frac{1}{\Deltat^2}\mathbf{M} \mathbf{p}}
+- \mathop{\text{tr}}\mathbf{p}\top(k \mathbf{A}\top \mathbf{d}+ \frac{1}{\Deltat^2}\mathbf{M}(2\mathbf{p}^t - \mathbf{p}^{t-\Deltat}) + \mathbf{f}\text{ext})} + \text{ constants }.
 $$
 
 > **Question:** Why do we not bother to write out the terms that are constant with
-> respect to $\p$?
+> respect to $\mathbf{p}?
 
 We can clean this up by introducing a few auxiliary matrices:
 
 $$
-\Q := (k \A\^\top \A + \frac{1}{∆t²}\M) ∈ \R\^{n×n} \\\\
-\y := \frac{1}{∆t²}\M (2\p\^t - \p\^{t-∆t}) + \f^\text{ext} ∈ \R\^{n×3} \\\\
-\b := k \A\^\top \d + \y ∈ \R\^{n×3}.
+\mathbf{Q}:= (k \mathbf{A}^\top \mathbf{A}+ \frac{1}{\Deltat^2}\mathbf{M} \in \mathbf{R}^{n\timesn} \\\\
+\mathbf{y}:= \frac{1}{\Deltat^2}\mathbf{M}(2\mathbf{p}^t - \mathbf{p}^{t-\Deltat}) + \mathbf{f}\text{ext} \in \mathbf{R}^{n\times3} \\\\
+\mathbf{b}:= k \mathbf{A}^\top \mathbf{d}+ \mathbf{y}\in \mathbf{R}^{n\times3}.
 $$
 
 Now our optimization problem is neatly written as:
 
 $$
-\p\^{t+∆t} = \vec{a}rgmin_\p ½ \tr{ \p\^\top \Q \p } - \tr{\p\^\top \b}.
+\mathbf{p}^{t+\Deltat} = \mathop{\text{argmin}}\mathbf{p}\frac12 \mathop{\text{tr}} \mathbf{p}^\top \mathbf{Q}\mathbf{p}} - \mathop{\text{tr}}\mathbf{p}^\top \mathbf{b}.
 $$
 
 > **Recall:** The trace operator behaves very nicely when differentiating.
 >
-> $$\frac{∂ \tr{\x^\top \y}}{∂ \x} = \y$$
+> $$\frac{\partial \mathop{\text{tr}}\mathbf{x}\top \mathbf{y}}{\partial \mathbf{x} = \mathbf{y}$
 > and 
 >
-> $$\frac{∂ ½\tr{\x^\top \Y \x}}{∂ \x} = \Y \x$$
+> $$\frac{\partial \frac12\mathop{\text{tr}}\mathbf{x}\top \mathbf{Y}\mathbf{x}}{\partial \mathbf{x} = \mathbf{Y}\mathbf{x}$
 >
 
-Taking a derivative with respect to $\p$ and setting the expression to zero
+Taking a derivative with respect to $\mathbf{p} and setting the expression to zero
 reveals the minimizer of this quadratic energy:
 
 $$
-\Q \p = \b
+\mathbf{Q}\mathbf{p}= \b
 $$
 
-Since $\Q$ is a square invertible matrix we can _solve_ this system, which we
+Since $\mathbf{Q} is a square invertible matrix we can _solve_ this system, which we
 often write as:
 
 $$
-\p = \Q\^{-1} \b.
+\mathbf{p}= \mathbf{Q}^{-1} \mathbf{b}
 $$
 
 #### Solving as the _action_ of multiplying by a matrix's inverse
 
-From an algorithmic point of view the notation $\p = \Q^{-1} \b$ is misleading. It
+From an algorithmic point of view the notation $\mathbf{p}= \mathbf{Q}{-1} \mathbf{b} is misleading. It
 might suggest first constructing `Qinv = inverse(Q)` and then conducting matrix
 multiply `p = Qinv * b`. This is almost always a bad idea. Constructing `Qinv` 
-be very expensive $O(n³)$ and numerically unstable.
+be very expensive $O(n^3)$ and numerically unstable.
 
 Instead, we should think of the _action_ of multiplying by the inverse of a
 matrix as a single "solve" operation: `p = solve(Q,b)`. Some programming
@@ -366,16 +366,16 @@ factorization of the matrix into a
 [lower triangular matrix](https://en.wikipedia.org/wiki/Triangular_matrix)
 times it's transpose:
 $$
-\Q = \L \L^\top.
+\mathbf{Q}= \mathbf{L}\mathbf{L}\top.
 $$
-Finding this $\L$ matrix takes $O(n³)$ time in general.
+Finding this $\mathbf{L} matrix takes $O(n^3)$ time in general.
 
 The action of solving against a triangular matrix is simple
 [forward-/back-substitution](https://en.wikipedia.org/wiki/Triangular_matrix#Forward_and_back_substitution)
-and takes $O(n²)$ time. We can conceptually rewrite our system as 
-$\Q \p = \b$ with $\L \L^\top \p = \b$.
+and takes $O(n^2)$ time. We can conceptually rewrite our system as 
+$\mathbf{Q}\mathbf{p}= \mathbf{b} with $\mathbf{L}\mathbf{L}\top \mathbf{p}= \mathbf{b}.
 
-A key insight of the Liu et al. paper is that our $\Q$ matrix is always same
+A key insight of the Liu et al. paper is that our $\mathbf{Q} matrix is always same
 (regardless of the iterations in our algorithm above and even regardless of the
 time $t$ that we're computing positions for).  We can split our solve routine
 into two steps: precomputation done once when the mass-spring system is loaded
@@ -391,24 +391,24 @@ p = back_substitution(transpose(L),forward_substitution(L,b))
 
 ### Sparse Matrices
 
-For small mass spring systems, $O(n³)$ at loading time and $O(n²)$ at runtime
+For small mass spring systems, $O(n^3)$ at loading time and $O(n^2)$ at runtime
 may be acceptable. But for even medium sized systems this will become
-intractable $(n=1000 → n³=1,000,000,000.)$
+intractable $(n=1000 \Rightarrow n^3=1,000,000,000.)$
 
 Fortunately, we can avoid this worst-case behavior by observing a special
-structure in our matrices. Let's start with the mass matrix $\M ∈ \R^{n×n}$. All
+structure in our matrices. Let's start with the mass matrix $\mathbf{M}\in \mathbf{R}{n\timesn}$. All
 of the values of this matrix are zero except the diagonal. Storing this as a
-general matrix we would be storing $n²-n$ zeros. Instead, we can acknowlede that
+general matrix we would be storing $n^2-n$ zeros. Instead, we can acknowlede that
 this matrix is [sparse](https://en.wikipedia.org/wiki/Sparse_matrix) and store
 only the non-zeros along the diagonal.
 
-Similarly, the matrix $\A^{m×n}$ has $2m$ non-zeros (a $+1$ and $-1$ per edge)
-and the other $mn-2m$ entries are zero. Furthermore, the result of the product $\A^\top\A$ and by
-extension $\Q ∈ \R^{n×n}$ will mostly contain zeros. The number of non-zeros is
+Similarly, the matrix $\mathbf{A}{m\timesn}$ has $2m$ non-zeros (a $+1$ and $-1$ per edge)
+and the other $mn-2m$ entries are zero. Furthermore, the result of the product $\mathbf{A}\top\mathbf{A} and by
+extension $\mathbf{Q}\in \mathbf{R}{n\timesn}$ will mostly contain zeros. The number of non-zeros is
 in fact $O(m + n)$. Large mass-spring systems tend to have $m=O(n)$ edges, so we
 can happily think of the number of non-zeros as $O(n)$.
 
-We've reduced the storage required from $O(n²)$ to $O(n)$.  What's the catch?
+We've reduced the storage required from $O(n^2)$ to $O(n)$.  What's the catch?
 General (or "dense") matrices can be easily mapped to memory linearly. For a an
 arbitrary sparse matrix, we need store additional information to know _where_
 each non-zero entry is. The most common general approach is to stored a sorted
@@ -463,19 +463,19 @@ we will use Eigen's `SparseMatrix` class.
 Most important to our mass spring system is the _solve action_ discussed above.
 Similar to the dense case, we can precompute a factorization and use
 substitution at runtime. For our sparse matrix, these steps will
-be $O(n^{≈1.5})$, with substitution faster and nearly $O(n)$.
+be $O(n^{\approx1.5})$, with substitution faster and nearly $O(n)$.
 
 ### Pinned Vertices
 
-Subject to the external force of gravity in $\f^\text{ext}$ our spring networks
+Subject to the external force of gravity in $\mathbf{f}\text{ext}$ our spring networks
 will just accelerate downward off the screen.
 
 We can pin down vertices (e.g., those listed in `b`) at their intial positions,
-by requiring that their corresponding positions values $\p_i$ are always forced
-to be equal to their initial values $\p^\text{rest}_b$:
+by requiring that their corresponding positions values $\mathbf{p}i$ are always forced
+to be equal to their initial values $\mathbf{p}\text{rest}_b$:
 
 $$
-\p_i = \p^\text{rest}_i \ ∀ i \text{ in pinned vertices}.
+\mathbf{p}i = \mathbf{p}\text{rest}_i \ \forall i \text{ in pinned vertices}.
 $$
 
 There are various ways we can introduce this simple linear equality constraint
@@ -486,20 +486,20 @@ quadratic energy term which is minimized when our pinning constraints are
 satisfied:
 
 $$
-\frac{w}{2} \sum\limits_{i \text{ in pinned vertices}} ‖\p_i - \p\^\text{rest}_i ‖\^2,
+\frac{w}{2} \sum\limits_{i \text{ in pinned vertices}} \|\mathbf{p}i - \mathbf{p}^\text{rest}_i \|\^2,
 $$
 
 where the $w$ should be set to some large value (e.g., `w=1e10`). We can write this in matrix form as:
 
 $$
-\frac{w}{2} \tr{(\C \p - \C \p\^\text{rest})^\top(\C \p - \C \p\^\text{rest})}  = \\\\
-\frac{1}{2} \tr{\p\^\top (w \C\^\top \C) \p} - \tr{\p^\top w\C^\top \C \p\^\text{rest}} + \text{constant}
+\frac{w}{2} \mathop{\text{tr}}(\mathbf{C}\mathbf{p}- \mathbf{C}\mathbf{p}^\text{rest})^\top(\mathbf{C}\mathbf{p}- \mathbf{C}\mathbf{p}^\text{rest})}  = \\\\
+\frac{1}{2} \mathop{\text{tr}}\mathbf{p}^\top (w \mathbf{C}^\top \mathbf{C} \mathbf{p} - \mathop{\text{tr}}\mathbf{p}\top w\mathbf{C}\top \mathbf{C}\mathbf{p}^\text{rest}} + \text{constant}
 $$
 
-where $\C \in \R^{|\text{pinned}| × n}$ has one row per pinned vertex with a
+where $\mathbf{C}\in \mathbf{R}{|\text{pinned}| \times n}$ has one row per pinned vertex with a
 $+1$ in the corresponding column.
 
-We can add these quadratic and linear coefficients to $\Q$ and $\b$ above correspondingly.
+We can add these quadratic and linear coefficients to $\mathbf{Q} and $\mathbf{b} above correspondingly.
 
 ## Tasks
 
