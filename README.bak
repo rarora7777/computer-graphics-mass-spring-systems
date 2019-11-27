@@ -338,7 +338,7 @@ Taking a derivative with respect to $\p$ and setting the expression to zero
 reveals the minimizer of this quadratic energy:
 
 $$
-\Q \p = \b
+\Q \p = \b.
 $$
 
 Since $\Q$ is a square invertible matrix we can _solve_ this system, which we

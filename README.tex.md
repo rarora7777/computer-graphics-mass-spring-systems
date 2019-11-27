@@ -129,15 +129,6 @@ unknowns $\mathbf{p}^{t+\Delta t}$. Unfortunately, even for a simple spring the 
 \partial V/\partial \mathbf{p}^{t+\Delta t}$ depend _non-linearly_ on $\mathbf{p}^{t+\Delta t}$. This means we have a
 _non-linear_ system of equations, which can be tricky to satisfy directly.
 
-<!--
-If we expanded this as an expression, we
-might write:
-$$
-\frac{\partial  V(\mathbf{p}^{t+\Delta t})}{\partial  \mathbf{p}} = 
-\mathbf{M} \left(
-\frac{\mathbf{p}^{t+\Delta t}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}^{t-\Delta t}}{\Delta t^2 }.
-$$
--->
 
 > **Question:** We've _chosen_ to define $\mathbf{f}$ as the forces that implicitly
 > depend on the unknown positions $\mathbf{p}^{t+\Delta t}$ at the end of the
@@ -150,7 +141,7 @@ satisfies $\mathbf{f} = m \mathbf{a}$. The minimizer $\mathbf{p}$ of some functi
 $\partial E/\partial \mathbf{p} = 0$. So we construct an energy $E$ such that $\partial E/\partial \mathbf{p} = \mathbf{f} - m\mathbf{a}$:
 
 $$
-\mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\p
+\mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\mathbf{p}
 \underbrace{
 \left(\sum\limits_{ij} \frac12 k( \| \mathbf{p}_i-\mathbf{p}_j\|  - r_{ij})^2\right)  - 
 \Delta t^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) - 
@@ -198,7 +189,7 @@ _unknown_ optimal solution $\mathbf{p}^{t+\Delta t}$, then treating $\mathbf{d}_
 find the optimal solution by solving the _quadratic_ optimization problem:
 
 $$
-\mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\p
+\mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\mathbf{p}
 \underbrace{
 \left(\sum\limits_{ij} \frac12 k\| (\mathbf{p}_i-\mathbf{p}_j) - \mathbf{d}_{ij}\| ^2\right)  - 
 \Delta t^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) -
@@ -254,12 +245,12 @@ m_i
 \left(\mathbf{p}_i - 2 \mathbf{p}^{t}_i - \mathbf{p}_i^{t-\Delta t}\right)
 \right) = \\\\
 \frac{1}{\Delta t^2} 
-\mathop{\text{tr}}\left(
+\mathop{\text{tr}}{
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
-\right),
+},
 $$
 
-where $\mathop{\text{tr}}\left(\mathbf{X}\right)$ computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of $\mathbf{X}$ (sums up the diagonal entries: $\mathbf{X}_{11}+\mathbf{X}_{22}+\dots$).
+where $\mathop{\text{tr}}{\mathbf{X}}$ computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of $\mathbf{X}$ (sums up the diagonal entries: $\mathbf{X}_{11}+\mathbf{X}_{22}+\dots$).
 
 and the entries of the square matrix $\mathbf{M}\in \mathbf{R}^{n\times n}$ are set to 
 
@@ -291,7 +282,7 @@ We can now write the modified potential energy of $\tilde{E}$ in matrix form:
 
 $$
 \left(\sum\limits_{ij} \frac12 k\| (\mathbf{p}_i-\mathbf{p}_j) - \mathbf{d}_{ij}\| ^2\right)  = \\\\
-\frac{k}{2} \mathop{\text{tr}}\left((\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})\right),
+\frac{k}{2} \mathop{\text{tr}}{(\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})},
 $$
 where we stack the vector $\mathbf{d}_{ij}$ for each edge in the corresponding rows of $\mathbf{d}\in \mathbf{R}^{m \times  3}$.
 
@@ -300,13 +291,13 @@ Combining our two matrix expressions together we can write $\tilde{E}$ entirely
 in matrix form:
 
 $$\tilde{E}(\mathbf{p}) = \\\\
-\frac{k}{2} \mathop{\text{tr}}\left((\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})\right) + 
-\mathop{\text{tr}}\left(
+\frac{k}{2} \mathop{\text{tr}}{(\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})} + 
+\mathop{\text{tr}}{
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
-\right) 
-\mathop{\text{tr}}\left(\mathbf{p}^\top \mathbf{f}^\text{ext}\right) = \\\\
-\frac{1}{2} \mathop{\text{tr}}\left( \mathbf{p}^\top (k \mathbf{A}^\top \mathbf{A} + \frac{1}{\Delta t^2 }\mathbf{M}) \mathbf{p} \right)
-- \mathop{\text{tr}}\left(\mathbf{p}^\top(k \mathbf{A}^\top \mathbf{d} + \frac{1}{\Delta t^2 }\mathbf{M} (2\mathbf{p}^t - \mathbf{p}^{t-\Delta t}) + \mathbf{f}^\text{ext})\right) + \text{ constants }.
+} 
+\mathop{\text{tr}}{\mathbf{p}^\top \mathbf{f}^\text{ext}} = \\\\
+\frac{1}{2} \mathop{\text{tr}}{ \mathbf{p}^\top (k \mathbf{A}^\top \mathbf{A} + \frac{1}{\Delta t^2 }\mathbf{M}) \mathbf{p} }
+- \mathop{\text{tr}}{\mathbf{p}^\top(k \mathbf{A}^\top \mathbf{d} + \frac{1}{\Delta t^2 }\mathbf{M} (2\mathbf{p}^t - \mathbf{p}^{t-\Delta t}) + \mathbf{f}^\text{ext})} + \text{ constants }.
 $$
 
 > **Question:** Why do we not bother to write out the terms that are constant with
@@ -323,15 +314,15 @@ $$
 Now our optimization problem is neatly written as:
 
 $$
-\mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\mathbf{p} \frac12  \mathop{\text{tr}}\left( \mathbf{p}^\top \mathbf{Q} \mathbf{p} \right) - \mathop{\text{tr}}\left(\mathbf{p}^\top \mathbf{b}\right).
+\mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\mathbf{p} \frac12  \mathop{\text{tr}}{ \mathbf{p}^\top \mathbf{Q} \mathbf{p} } - \mathop{\text{tr}}{\mathbf{p}^\top \mathbf{b}}.
 $$
 
 > **Recall:** The trace operator behaves very nicely when differentiating.
 >
-> $$\frac{\partial  \mathop{\text{tr}}\left(\mathbf{x}^\top \mathbf{y}\right)}{\partial  \mathbf{x}} = \mathbf{y}$$
+> $$\frac{\partial  \mathop{\text{tr}}{\mathbf{x}^\top \mathbf{y}}}{\partial  \mathbf{x}} = \mathbf{y}$$
 > and 
 >
-> $$\frac{\partial  \frac12 \mathop{\text{tr}}\left(\mathbf{x}^\top \mathbf{Y} \mathbf{x}\right)}{\partial  \mathbf{x}} = \mathbf{Y} \mathbf{x}$$
+> $$\frac{\partial  \frac12 \mathop{\text{tr}}{\mathbf{x}^\top \mathbf{Y} \mathbf{x}}}{\partial  \mathbf{x}} = \mathbf{Y} \mathbf{x}$$
 >
 
 Taking a derivative with respect to $\mathbf{p}$ and setting the expression to zero
@@ -492,8 +483,8 @@ $$
 where the $w$ should be set to some large value (e.g., `w=1e10`). We can write this in matrix form as:
 
 $$
-\frac{w}{2} \mathop{\text{tr}}\left((\mathbf{C} \mathbf{p} - \mathbf{C} \mathbf{p}^\text{rest})^\top(\mathbf{C} \mathbf{p} - \mathbf{C} \mathbf{p}^\text{rest})\right)  = \\\\
-\frac{1}{2} \mathop{\text{tr}}\left(\mathbf{p}^\top (w \mathbf{C}^\top \mathbf{C}) \mathbf{p}\right) - \mathop{\text{tr}}\left(\mathbf{p}^\top w\mathbf{C}^\top \mathbf{C} \mathbf{p}^\text{rest}\right) + \text{constant}
+\frac{w}{2} \mathop{\text{tr}}{(\mathbf{C} \mathbf{p} - \mathbf{C} \mathbf{p}^\text{rest})^\top(\mathbf{C} \mathbf{p} - \mathbf{C} \mathbf{p}^\text{rest})}  = \\\\
+\frac{1}{2} \mathop{\text{tr}}{\mathbf{p}^\top (w \mathbf{C}^\top \mathbf{C}) \mathbf{p}} - \mathop{\text{tr}}{\mathbf{p}^\top w\mathbf{C}^\top \mathbf{C} \mathbf{p}^\text{rest}} + \text{constant}
 $$
 
 where $\mathbf{C} \in \mathbf{R}^{|\text{pinned}| \times  n}$ has one row per pinned vertex with a
