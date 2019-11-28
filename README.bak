@@ -299,14 +299,17 @@ where we stack the vector $\d_{ij}$ for each edge in the corresponding rows of $
 Combining our two matrix expressions together we can write $\tilde{E}$ entirely
 in matrix form:
 
-$$\tilde{E}(\p) = \\\\
+$$
+\begin{align*}
+\tilde{E}(\p) &= 
 \frac{k}{2} \tr{(\A \p - \d)^\top (\A \p - \d)} + 
 \tr{
 \left(\p - 2\p\^{t} + \p\^{t-∆t}\right)^\top \M \left(\p - 2\p\^{t} + \p\^{t-∆t}\right)
 } 
-\tr{\p^\top \f^\text{ext}} = \\\\
+\tr{\p^\top \f^\text{ext}} \\&=
 \frac{1}{2} \tr{ \p^\top (k \A^\top \A + \frac{1}{∆t²}\M) \p }
 - \tr{\p^\top(k \A^\top \d + \frac{1}{∆t²}\M (2\p\^t - \p\^{t-∆t}) + \f^\text{ext})} + \text{ constants }.
+\end{align*}
 $$
 
 > **Question:** Why do we not bother to write out the terms that are constant with

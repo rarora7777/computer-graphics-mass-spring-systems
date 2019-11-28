@@ -299,14 +299,17 @@ where we stack the vector $\mathbf{d}_{ij}$ for each edge in the corresponding r
 Combining our two matrix expressions together we can write $\tilde{E}$ entirely
 in matrix form:
 
-$$\tilde{E}(\mathbf{p}) = \\\\
+$$
+\begin{align*}
+\tilde{E}(\mathbf{p}) &= 
 \frac{k}{2} \mathop\text{tr}{\left((\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})\right)} + 
 \mathop{\text{tr}}{
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
 } 
-\mathop\text{tr}{\left(\mathbf{p}^\top \mathbf{f}^\text{ext}\right)} = \\\\
+\mathop\text{tr}{\left(\mathbf{p}^\top \mathbf{f}^\text{ext}\right)} \\&=
 \frac{1}{2} \mathop\text{tr}{\left( \mathbf{p}^\top (k \mathbf{A}^\top \mathbf{A} + \frac{1}{\Delta t^2 }\mathbf{M}) \mathbf{p} \right)}
 - \mathop\text{tr}{\left(\mathbf{p}^\top(k \mathbf{A}^\top \mathbf{d} + \frac{1}{\Delta t^2 }\mathbf{M} (2\mathbf{p}^t - \mathbf{p}^{t-\Delta t}) + \mathbf{f}^\text{ext})\right)} + \text{ constants }.
+\end{align*}
 $$
 
 > **Question:** Why do we not bother to write out the terms that are constant with
