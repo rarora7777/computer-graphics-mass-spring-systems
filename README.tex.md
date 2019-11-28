@@ -247,16 +247,18 @@ $\mathbf{p}^{t},\mathbf{p}^{t-\Delta t}\in \mathbf{R}^{n\times 3}$.
 
 We can then express the inertial term using matrices:
 $$
-\Delta t^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i - \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) = \\\\
+\begin{align*}
+\Delta t^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i - \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) &=
 \frac{1}{\Delta t^2} \left(\sum\limits_i 
 \left(\mathbf{p}_i - 2 \mathbf{p}^{t}_i - \mathbf{p}_i^{t-\Delta t}\right)^\top
 m_i
 \left(\mathbf{p}_i - 2 \mathbf{p}^{t}_i - \mathbf{p}_i^{t-\Delta t}\right)
-\right) = \\\\
+\right) \\ &=
 \frac{1}{\Delta t^2} 
 \mathop{\text{tr}}{
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
 },
+\end{align*}
 $$
 
 where $\mathop\text{tr}{\left(\mathbf{X}\right)}$ computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of $\mathbf{X}$ (sums up the diagonal entries: $\mathbf{X}_{11}+\mathbf{X}_{22}+\dots$).

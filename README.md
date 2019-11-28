@@ -207,7 +207,7 @@ We can do the same for the _known_ previous time steps' positions
 <img src="svgs/36b373ed95b016fb214ef52b36dc5010.svg?invert_in_darkmode&sanitize=true" align=middle width=125.146395pt height=27.65697pt/>.
 
 We can then express the inertial term using matrices:
-<p align="center"><img src="svgs/6562fd8b4ffbf9e38ae38355de1ea4b8.svg?invert_in_darkmode&sanitize=true" align=middle width=1064.1708pt height=59.178735pt/></p>
+<p align="center"><img src="svgs/edef44c91a1772228d8d6de8ddeeba32.svg?invert_in_darkmode&sanitize=true" align=middle width=688.7199pt height=98.744085pt/></p>
 
 where <img src="svgs/797d20fec02db91e546ce25d31c18bf5.svg?invert_in_darkmode&sanitize=true" align=middle width=42.648375pt height=24.6576pt/> computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of <img src="svgs/d05b996d2c08252f77613c25205a0f04.svg?invert_in_darkmode&sanitize=true" align=middle width=14.2923pt height=22.55715pt/> (sums up the diagonal entries: <img src="svgs/3d30c855ff8804d9162b1ba648834929.svg?invert_in_darkmode&sanitize=true" align=middle width=115.798815pt height=22.55715pt/>).
 

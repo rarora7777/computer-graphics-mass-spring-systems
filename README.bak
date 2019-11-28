@@ -247,16 +247,18 @@ $\p^{t},\p^{t-∆t}∈\R^{n×3}$.
 
 We can then express the inertial term using matrices:
 $$
-∆t\^2 \left(\sum\limits_i m_i \left(\frac{\p\_i - 2 \p\^{t}\_i - \p_i\^{t-∆t}}{∆t²}\right)\^2 \right) = \\\\
+\begin{align*}
+∆t\^2 \left(\sum\limits_i m_i \left(\frac{\p\_i - 2 \p\^{t}\_i - \p_i\^{t-∆t}}{∆t²}\right)\^2 \right) &=
 \frac{1}{∆t\^2} \left(\sum\limits_i 
 \left(\p\_i - 2 \p\^{t}\_i - \p_i\^{t-∆t}\right)^\top
 m_i
 \left(\p\_i - 2 \p\^{t}\_i - \p_i\^{t-∆t}\right)
-\right) = \\\\
+\right) \\ &=
 \frac{1}{∆t\^2} 
 \tr{
 \left(\p - 2\p\^{t} + \p\^{t-∆t}\right)^\top \M \left(\p - 2\p\^{t} + \p\^{t-∆t}\right)
 },
+\end{align*}
 $$
 
 where $\tr{\X}$ computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of $\X$ (sums up the diagonal entries: $\X_{11}+\X_{22}+\dots$).
