@@ -102,6 +102,7 @@ over the small time step:
 $$
 \dot{\mathbf{p}}^t_i = \frac{\mathbf{p}^t_i - \mathbf{p}^{t-\Delta t}_i}{\Delta t}
 $$
+
 where $\mathbf{p}^{t-\Delta t}_i \in  \mathbf{R}^3$ is the position at the _previous_ time.
 
 We can also use a _central_ finite difference to define the acceleration at time
@@ -295,6 +296,7 @@ $$
 \left(\sum\limits_{ij} \frac12 k\| (\mathbf{p}_i-\mathbf{p}_j) - \mathbf{d}_{ij}\| ^2\right)  = \\\\
 \frac{k}{2} \mathop\text{tr}{\left((\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})\right)},
 $$
+
 where we stack the vector $\mathbf{d}_{ij}$ for each edge in the corresponding rows of $\mathbf{d}\in \mathbf{R}^{m \times  3}$.
 
 
@@ -375,6 +377,7 @@ times it's transpose:
 $$
 \mathbf{Q} = \mathbf{L} \mathbf{L}^\top.
 $$
+
 Finding this $\mathbf{L}$ matrix takes $O(n^3 )$ time in general.
 
 The action of solving against a triangular matrix is simple
