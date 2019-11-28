@@ -110,7 +110,7 @@ sed -i 's/\\argmax\([^A-Za-z]\)/\\mathop\{\\text\{argmax\}\}\1/g' $1
 sed -i 's/\\argmin\([^A-Za-z]\)/\\mathop\{\\text\{argmin\}\}\1/g' $1
 sed -i 's/\\transpose\([^A-Za-z]\)/\{\\mathsf T\}\1/g' $1
 #sed -i 's/\\tr\([^A-Za-z]\)/\\mathop\{\\text\{tr\}\}\1/g' $1
-perl -pi -e 's/\\tr\s*(\{((?:[^{}]++|(?1))*)\})/\\mathop\\text\{tr\}\{\left(\2\right)\}/g' $1
+perl -pi -e 's/\\tr\s*(\{((?:[^{}]++|(?1))*)\})/\\mathop\\text\{tr\}\{\\left(\2\\right)\}/g' $1
 
 #Special characters
 sed -i 's/∈/\\in /g' $1

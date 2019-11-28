@@ -209,7 +209,7 @@ We can do the same for the _known_ previous time steps' positions
 We can then express the inertial term using matrices:
 <p align="center"><img src="svgs/6562fd8b4ffbf9e38ae38355de1ea4b8.svg?invert_in_darkmode?sanitize=true" align=middle width=1064.1708pt height=59.178735pt/></p>
 
-where <img src="svgs/d10f6b286820776d9210eb3167a6eab4.svg?invert_in_darkmode?sanitize=true" align=middle width=95.55678pt height=24.6576pt/> computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of <img src="svgs/d05b996d2c08252f77613c25205a0f04.svg?invert_in_darkmode?sanitize=true" align=middle width=14.2923pt height=22.55715pt/> (sums up the diagonal entries: <img src="svgs/3d30c855ff8804d9162b1ba648834929.svg?invert_in_darkmode?sanitize=true" align=middle width=115.798815pt height=22.55715pt/>).
+where <img src="svgs/797d20fec02db91e546ce25d31c18bf5.svg?invert_in_darkmode?sanitize=true" align=middle width=42.648375pt height=24.6576pt/> computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of <img src="svgs/d05b996d2c08252f77613c25205a0f04.svg?invert_in_darkmode?sanitize=true" align=middle width=14.2923pt height=22.55715pt/> (sums up the diagonal entries: <img src="svgs/3d30c855ff8804d9162b1ba648834929.svg?invert_in_darkmode?sanitize=true" align=middle width=115.798815pt height=22.55715pt/>).
 
 and the entries of the square matrix <img src="svgs/35eaa614ad74ef19a4a94c079c27b637.svg?invert_in_darkmode?sanitize=true" align=middle width=78.740475pt height=26.17758pt/> are set to 
 
@@ -234,14 +234,14 @@ each edge:
 
 We can now write the modified potential energy of <img src="svgs/9674605b99e37d0dbca0fc51ec6b1bc7.svg?invert_in_darkmode?sanitize=true" align=middle width=13.08219pt height=30.2676pt/> in matrix form:
 
-<p align="center"><img src="svgs/263667b5de9e393c9528100a08d723a0.svg?invert_in_darkmode?sanitize=true" align=middle width=479.70615pt height=59.178735pt/></p>
+<p align="center"><img src="svgs/d9867749b79e88915bc85196bccc511e.svg?invert_in_darkmode?sanitize=true" align=middle width=429.08085pt height=59.178735pt/></p>
 where we stack the vector <img src="svgs/27ad4bcb9a515705743055d231c7d7c5.svg?invert_in_darkmode?sanitize=true" align=middle width=21.257775pt height=22.83138pt/> for each edge in the corresponding rows of <img src="svgs/39b5c8193ccaa0606e2ad1b2af6c2c65.svg?invert_in_darkmode?sanitize=true" align=middle width=73.262805pt height=26.76201pt/>.
 
 
 Combining our two matrix expressions together we can write <img src="svgs/9674605b99e37d0dbca0fc51ec6b1bc7.svg?invert_in_darkmode?sanitize=true" align=middle width=13.08219pt height=30.2676pt/> entirely
 in matrix form:
 
-<p align="center"><img src="svgs/4ddec424cb35ceeb2b323a0f3cd6a6f3.svg?invert_in_darkmode?sanitize=true" align=middle width=1527.504pt height=33.81213pt/></p>
+<p align="center"><img src="svgs/77422c52656de364345d4c1974722b6b.svg?invert_in_darkmode?sanitize=true" align=middle width=1343.26665pt height=39.45249pt/></p>
 
 > **Question:** Why do we not bother to write out the terms that are constant with
 > respect to <img src="svgs/980fcd4213d7b5d2ffcc82ec78c27ead.svg?invert_in_darkmode?sanitize=true" align=middle width=10.50225pt height=14.61207pt/>?
@@ -252,14 +252,14 @@ We can clean this up by introducing a few auxiliary matrices:
 
 Now our optimization problem is neatly written as:
 
-<p align="center"><img src="svgs/aac125ec3e701019218b6950fcd7b80f.svg?invert_in_darkmode?sanitize=true" align=middle width=397.56915pt height=37.01115pt/></p>
+<p align="center"><img src="svgs/a66d510d67403c77f7e051f211662a7b.svg?invert_in_darkmode?sanitize=true" align=middle width=296.31855pt height=37.01115pt/></p>
 
 > **Recall:** The trace operator behaves very nicely when differentiating.
 >
-> <p align="center"><img src="svgs/14f01e5aeaa9f35bce7dec62fb50e1c5.svg?invert_in_darkmode?sanitize=true" align=middle width=159.087225pt height=36.3528pt/></p>
+> <p align="center"><img src="svgs/650532e6d415fe94decf282253b94033.svg?invert_in_darkmode?sanitize=true" align=middle width=108.461925pt height=37.412925pt/></p>
 > and 
 >
-> <p align="center"><img src="svgs/0c6bc48e95d9e21d6417d45e63d3ace7.svg?invert_in_darkmode?sanitize=true" align=middle width=197.6436pt height=37.311615pt/></p>
+> <p align="center"><img src="svgs/f073e73746c3abad28587eb4a4f5e47a.svg?invert_in_darkmode?sanitize=true" align=middle width=147.01896pt height=37.412925pt/></p>
 >
 
 Taking a derivative with respect to <img src="svgs/980fcd4213d7b5d2ffcc82ec78c27ead.svg?invert_in_darkmode?sanitize=true" align=middle width=10.50225pt height=14.61207pt/> and setting the expression to zero
@@ -409,7 +409,7 @@ satisfied:
 
 where the <img src="svgs/31fae8b8b78ebe01cbfbe2fe53832624.svg?invert_in_darkmode?sanitize=true" align=middle width=12.21099pt height=14.15535pt/> should be set to some large value (e.g., `w=1e10`). We can write this in matrix form as:
 
-<p align="center"><img src="svgs/62edc3a7834853ecfd53e105e868c64e.svg?invert_in_darkmode?sanitize=true" align=middle width=802.0584pt height=32.9901pt/></p>
+<p align="center"><img src="svgs/a8e5540721f67b7ce7add387fd2d4fdb.svg?invert_in_darkmode?sanitize=true" align=middle width=664.79325pt height=32.9901pt/></p>
 
 where <img src="svgs/499f8b11566a62ae9b0a2f4b918744c0.svg?invert_in_darkmode?sanitize=true" align=middle width=112.7379pt height=29.19114pt/> has one row per pinned vertex with a
 <img src="svgs/c11fe0cea175e1b787b3403c763dc9b0.svg?invert_in_darkmode?sanitize=true" align=middle width=21.004665pt height=21.18732pt/> in the corresponding column.
