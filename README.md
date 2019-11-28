@@ -94,6 +94,7 @@ difference](https://en.wikipedia.org/wiki/Finite_difference) of the positions
 over the small time step:
 
 <p align="center"><img src="svgs/245add6aa6b0df39512ea104d7125f08.svg?invert_in_darkmode&sanitize=true" align=middle width=118.89009pt height=37.291485pt/></p>
+
 where <img src="svgs/612ecaae0105899fb8c4b10424449b4a.svg?invert_in_darkmode&sanitize=true" align=middle width=83.150595pt height=29.79009pt/> is the position at the _previous_ time.
 
 We can also use a _central_ finite difference to define the acceleration at time
@@ -235,6 +236,7 @@ each edge:
 We can now write the modified potential energy of <img src="svgs/9674605b99e37d0dbca0fc51ec6b1bc7.svg?invert_in_darkmode&sanitize=true" align=middle width=13.08219pt height=30.2676pt/> in matrix form:
 
 <p align="center"><img src="svgs/d9867749b79e88915bc85196bccc511e.svg?invert_in_darkmode&sanitize=true" align=middle width=429.08085pt height=59.178735pt/></p>
+
 where we stack the vector <img src="svgs/27ad4bcb9a515705743055d231c7d7c5.svg?invert_in_darkmode&sanitize=true" align=middle width=21.257775pt height=22.83138pt/> for each edge in the corresponding rows of <img src="svgs/39b5c8193ccaa0606e2ad1b2af6c2c65.svg?invert_in_darkmode&sanitize=true" align=middle width=73.262805pt height=26.76201pt/>.
 
 
@@ -290,6 +292,7 @@ factorization of the matrix into a
 [lower triangular matrix](https://en.wikipedia.org/wiki/Triangular_matrix)
 times it's transpose:
 <p align="center"><img src="svgs/6da94c7036f7473a9c1bb41e4a88a1fd.svg?invert_in_darkmode&sanitize=true" align=middle width=74.52027pt height=17.97444pt/></p>
+
 Finding this <img src="svgs/80637df1ca7533740cc7b3fdd1ab540b.svg?invert_in_darkmode&sanitize=true" align=middle width=11.36982pt height=22.55715pt/> matrix takes <img src="svgs/b85a093314c0f482cded300a33f790b9.svg?invert_in_darkmode&sanitize=true" align=middle width=43.022265pt height=26.76201pt/> time in general.
 
 The action of solving against a triangular matrix is simple
