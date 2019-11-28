@@ -248,7 +248,7 @@ in matrix form:
 
 We can clean this up by introducing a few auxiliary matrices:
 
-<p align="center"><img src="svgs/d7cc76286d2583c7c7fb462afea89bb3.svg?invert_in_darkmode&sanitize=true" align=middle width=700.27485pt height=32.9901pt/></p>
+<p align="center"><img src="svgs/bd7e1e8f880815c8a5bee3f04c7cb457.svg?invert_in_darkmode&sanitize=true" align=middle width=294.88965pt height=97.10547pt/></p>
 
 Now our optimization problem is neatly written as:
 

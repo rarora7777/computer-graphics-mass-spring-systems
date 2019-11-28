@@ -320,9 +320,11 @@ $$
 We can clean this up by introducing a few auxiliary matrices:
 
 $$
-\Q := (k \A\^\top \A + \frac{1}{∆t²}\M) ∈ \R\^{n×n} \\\\
-\y := \frac{1}{∆t²}\M (2\p\^t - \p\^{t-∆t}) + \f^\text{ext} ∈ \R\^{n×3} \\\\
-\b := k \A\^\top \d + \y ∈ \R\^{n×3}.
+\begin{align*}
+\Q &:= (k \A\^\top \A + \frac{1}{∆t²}\M) ∈ \R\^{n×n} \\
+\y &:= \frac{1}{∆t²}\M (2\p\^t - \p\^{t-∆t}) + \f^\text{ext} ∈ \R\^{n×3} \\
+\b &:= k \A\^\top \d + \y ∈ \R\^{n×3}.
+\end{align*}
 $$
 
 Now our optimization problem is neatly written as:

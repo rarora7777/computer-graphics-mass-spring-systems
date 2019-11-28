@@ -320,9 +320,11 @@ $$
 We can clean this up by introducing a few auxiliary matrices:
 
 $$
-\mathbf{Q} := (k \mathbf{A}^\top \mathbf{A} + \frac{1}{\Delta t^2 }\mathbf{M}) \in  \mathbf{R}^{n\times n} \\\\
-\mathbf{y} := \frac{1}{\Delta t^2 }\mathbf{M} (2\mathbf{p}^t - \mathbf{p}^{t-\Delta t}) + \mathbf{f}^\text{ext} \in  \mathbf{R}^{n\times 3} \\\\
-\mathbf{b} := k \mathbf{A}^\top \mathbf{d} + \mathbf{y} \in  \mathbf{R}^{n\times 3}.
+\begin{align*}
+\mathbf{Q} &:= (k \mathbf{A}^\top \mathbf{A} + \frac{1}{\Delta t^2 }\mathbf{M}) \in  \mathbf{R}^{n\times n} \\
+\mathbf{y} &:= \frac{1}{\Delta t^2 }\mathbf{M} (2\mathbf{p}^t - \mathbf{p}^{t-\Delta t}) + \mathbf{f}^\text{ext} \in  \mathbf{R}^{n\times 3} \\
+\mathbf{b} &:= k \mathbf{A}^\top \mathbf{d} + \mathbf{y} \in  \mathbf{R}^{n\times 3}.
+\end{align*}
 $$
 
 Now our optimization problem is neatly written as:
