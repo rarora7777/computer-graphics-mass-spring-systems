@@ -161,3 +161,4 @@ sed -i 's/\\\^/\^/g' $1
 
 # Misc.
 sed -i 's/\\hat\([^A-Za-z]\)/\\widehat\1/g' $1
+sed -i 's/\\\\mathbf/\\\\/g' $1

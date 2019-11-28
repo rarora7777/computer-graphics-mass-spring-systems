@@ -254,12 +254,12 @@ m_i
 \left(\mathbf{p}_i - 2 \mathbf{p}^{t}_i - \mathbf{p}_i^{t-\Delta t}\right)
 \right) = \\\\
 \frac{1}{\Delta t^2} 
-\tr{
+\mathop{\text{tr}}{
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
 },
 $$
 
-where $\mathop\text{tr}\mathbf{X}$ computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of $\mathbf{X}$ (sums up the diagonal entries: $\mathbf{X}_{11}+\mathbf{X}_{22}+\dots$).
+where $\mathop\text{tr}{eft(\mathbf{X}ight)}$ computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of $\mathbf{X}$ (sums up the diagonal entries: $\mathbf{X}_{11}+\mathbf{X}_{22}+\dots$).
 
 and the entries of the square matrix $\mathbf{M}\in \mathbf{R}^{n\times n}$ are set to 
 
@@ -291,7 +291,7 @@ We can now write the modified potential energy of $\tilde{E}$ in matrix form:
 
 $$
 \left(\sum\limits_{ij} \frac12 k\| (\mathbf{p}_i-\mathbf{p}_j) - \mathbf{d}_{ij}\| ^2\right)  = \\\\
-\frac{k}{2} \mathop\text{tr}(\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d}),
+\frac{k}{2} \mathop\text{tr}{eft((\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})ight)},
 $$
 where we stack the vector $\mathbf{d}_{ij}$ for each edge in the corresponding rows of $\mathbf{d}\in \mathbf{R}^{m \times  3}$.
 
@@ -299,15 +299,14 @@ where we stack the vector $\mathbf{d}_{ij}$ for each edge in the corresponding r
 Combining our two matrix expressions together we can write $\tilde{E}$ entirely
 in matrix form:
 
-$$\begin{align*}
-\tilde{E}(\mathbf{p}) &= \frac{k}{2} \mathop\text{tr}(\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d}) + 
-\tr{
+$$\tilde{E}(\mathbf{p}) = \\\\
+\frac{k}{2} \mathop\text{tr}{eft((\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})ight)} + 
+\mathop{\text{tr}}{
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
 } 
-\mathop\text{tr}\mathbf{p}^\top \mathbf{f}^\text{ext} \\
-&= \frac{1}{2} \mathop\text{tr} \mathbf{p}^\top (k \mathbf{A}^\top \mathbf{A} + \frac{1}{\Delta t^2 }\mathbf{M}) \mathbf{p} 
-- \mathop\text{tr}\mathbf{p}^\top(k \mathbf{A}^\top \mathbf{d} + \frac{1}{\Delta t^2 }\mathbf{M} (2\mathbf{p}^t - \mathbf{p}^{t-\Delta t}) + \mathbf{f}^\text{ext}) + \text{ constants }.
-\end{align*}
+\mathop\text{tr}{eft(\mathbf{p}^\top \mathbf{f}^\text{ext}ight)} = \\\\
+\frac{1}{2} \mathop\text{tr}{eft( \mathbf{p}^\top (k \mathbf{A}^\top \mathbf{A} + \frac{1}{\Delta t^2 }\mathbf{M}) \mathbf{p} ight)}
+- \mathop\text{tr}{eft(\mathbf{p}^\top(k \mathbf{A}^\top \mathbf{d} + \frac{1}{\Delta t^2 }\mathbf{M} (2\mathbf{p}^t - \mathbf{p}^{t-\Delta t}) + \mathbf{f}^\text{ext})ight)} + \text{ constants }.
 $$
 
 > **Question:** Why do we not bother to write out the terms that are constant with
@@ -324,15 +323,15 @@ $$
 Now our optimization problem is neatly written as:
 
 $$
-\mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\mathbf{p} \frac12  \mathop\text{tr} \mathbf{p}^\top \mathbf{Q} \mathbf{p}  - \mathop\text{tr}\mathbf{p}^\top \mathbf{b}.
+\mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\mathbf{p} \frac12  \mathop\text{tr}{eft( \mathbf{p}^\top \mathbf{Q} \mathbf{p} ight)} - \mathop\text{tr}{eft(\mathbf{p}^\top \mathbf{b}ight)}.
 $$
 
 > **Recall:** The trace operator behaves very nicely when differentiating.
 >
-> $$\frac{\partial  \mathop\text{tr}\mathbf{x}^\top \mathbf{y}}{\partial  \mathbf{x}} = \mathbf{y}$$
+> $$\frac{\partial  \mathop\text{tr}{eft(\mathbf{x}^\top \mathbf{y}ight)}}{\partial  \mathbf{x}} = \mathbf{y}$$
 > and 
 >
-> $$\frac{\partial  \frac12 \mathop\text{tr}\mathbf{x}^\top \mathbf{Y} \mathbf{x}}{\partial  \mathbf{x}} = \mathbf{Y} \mathbf{x}$$
+> $$\frac{\partial  \frac12 \mathop\text{tr}{eft(\mathbf{x}^\top \mathbf{Y} \mathbf{x}ight)}}{\partial  \mathbf{x}} = \mathbf{Y} \mathbf{x}$$
 >
 
 Taking a derivative with respect to $\mathbf{p}$ and setting the expression to zero
@@ -493,8 +492,8 @@ $$
 where the $w$ should be set to some large value (e.g., `w=1e10`). We can write this in matrix form as:
 
 $$
-\frac{w}{2} \mathop\text{tr}(\mathbf{C} \mathbf{p} - \mathbf{C} \mathbf{p}^\text{rest})^\top(\mathbf{C} \mathbf{p} - \mathbf{C} \mathbf{p}^\text{rest})  = \\\\
-\frac{1}{2} \mathop\text{tr}\mathbf{p}^\top (w \mathbf{C}^\top \mathbf{C}) \mathbf{p} - \mathop\text{tr}\mathbf{p}^\top w\mathbf{C}^\top \mathbf{C} \mathbf{p}^\text{rest} + \text{constant}
+\frac{w}{2} \mathop\text{tr}{eft((\mathbf{C} \mathbf{p} - \mathbf{C} \mathbf{p}^\text{rest})^\top(\mathbf{C} \mathbf{p} - \mathbf{C} \mathbf{p}^\text{rest})ight)}  = \\\\
+\frac{1}{2} \mathop\text{tr}{eft(\mathbf{p}^\top (w \mathbf{C}^\top \mathbf{C}) \mathbf{p}ight)} - \mathop\text{tr}{eft(\mathbf{p}^\top w\mathbf{C}^\top \mathbf{C} \mathbf{p}^\text{rest}ight)} + \text{constant}
 $$
 
 where $\mathbf{C} \in \mathbf{R}^{|\text{pinned}| \times  n}$ has one row per pinned vertex with a
