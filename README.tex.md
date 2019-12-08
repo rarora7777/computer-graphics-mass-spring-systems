@@ -287,7 +287,7 @@ Using this matrix $\mathbf{A}$ as a linear operator we can compute the spring ve
 each edge:
 
 $$
-\mathbf{v} = \mathbf{A} \mathbf{p}  \Leftrightarrow  \mathbf{v}_{ij} = \mathbf{p}_i - \mathbf{p}_j.
+\mathbf{v} = \mathbf{A} \mathbf{p}  \leftrightarrow  \mathbf{v}_{ij} = \mathbf{p}_i - \mathbf{p}_j.
 $$
 
 We can now write the modified potential energy of $\tilde{E}$ in matrix form:
@@ -403,7 +403,7 @@ p = back_substitution(transpose(L),forward_substitution(L,b))
 
 For small mass spring systems, $O(n^3 )$ at loading time and $O(n^2 )$ at runtime
 may be acceptable. But for even medium sized systems this will become
-intractable $(n=1000 \Rightarrow  n^3 =1,000,000,000.)$
+intractable $(n=1000 \rightarrow  n^3 =1,000,000,000.)$
 
 Fortunately, we can avoid this worst-case behavior by observing a special
 structure in our matrices. Let's start with the mass matrix $\mathbf{M} \in  \mathbf{R}^{n\times n}$. All

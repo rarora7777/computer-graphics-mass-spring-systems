@@ -120,8 +120,8 @@ sed -i 's/∂/\\partial /g' $1
 sed -i 's/∆/\\Delta /g' $1
 sed -i 's/²/\^2 /g' $1
 sed -i 's/‖/\\| /g' $1
-sed -i 's/↔/\\Leftrightarrow /g' $1
-sed -i 's/→/\\Rightarrow /g' $1
+sed -i 's/↔/\\leftrightarrow /g' $1
+sed -i 's/→/\\rightarrow /g' $1
 sed -i 's/∀/\\forall /g' $1
 sed -i 's/θ/\\theta /g' $1
 sed -i 's/Θ/\\Theta /g' $1
@@ -130,7 +130,7 @@ sed -i 's/₂/\_2 /g' $1
 sed -i 's/₃/\_3 /g' $1
 sed -i 's/φ/\\varphi /g' $1
 sed -i 's/°/\^\\circ /g' $1
-sed -i 's/←/\\Leftarrow /g' $1
+sed -i 's/←/\\leftarrow /g' $1
 sed -i 's/σ/\\sigma /g' $1
 sed -i 's/⁰/\^0 /g' $1
 sed -i 's/δ/\\delta /g' $1

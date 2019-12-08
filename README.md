@@ -231,7 +231,7 @@ corresponding to edge connecting vertices <img src="svgs/77a3b857d53fb44e33b53e4
 Using this matrix <img src="svgs/96458543dc5abd380904d95cae6aa2bc.svg?invert_in_darkmode&sanitize=true" align=middle width=14.292300000000001pt height=22.557149999999996pt/> as a linear operator we can compute the spring vectors for
 each edge:
 
-<p align="center"><img src="svgs/64c5dab4c6b3f163b0c5537dff55b570.svg?invert_in_darkmode&sanitize=true" align=middle width=184.05585pt height=15.9817185pt/></p>
+<p align="center"><img src="svgs/08920ab7a3528fb8d252f81d62c41091.svg?invert_in_darkmode&sanitize=true" align=middle width=184.05585pt height=15.9817185pt/></p>
 
 We can now write the modified potential energy of <img src="svgs/9674605b99e37d0dbca0fc51ec6b1bc7.svg?invert_in_darkmode&sanitize=true" align=middle width=13.08219pt height=30.2676pt/> in matrix form:
 
@@ -318,7 +318,7 @@ p = back_substitution(transpose(L),forward_substitution(L,b))
 
 For small mass spring systems, <img src="svgs/b85a093314c0f482cded300a33f790b9.svg?invert_in_darkmode&sanitize=true" align=middle width=43.022265pt height=26.76201pt/> at loading time and <img src="svgs/e103cb4afcb639eecf8fda6ff0e12731.svg?invert_in_darkmode&sanitize=true" align=middle width=43.022265pt height=26.76201pt/> at runtime
 may be acceptable. But for even medium sized systems this will become
-intractable <img src="svgs/e2f61a925014fe412a2aa788b37fe3b3.svg?invert_in_darkmode&sanitize=true" align=middle width=250.852305pt height=26.76201pt/>
+intractable <img src="svgs/c44aa3f9209ffa667e04d8f87e0438a4.svg?invert_in_darkmode&sanitize=true" align=middle width=250.852305pt height=26.76201000000001pt/>
 
 Fortunately, we can avoid this worst-case behavior by observing a special
 structure in our matrices. Let's start with the mass matrix <img src="svgs/46cca5aa23b7d4f0ba986d15ca38e312.svg?invert_in_darkmode&sanitize=true" align=middle width=78.74047499999999pt height=26.17758pt/>. All
