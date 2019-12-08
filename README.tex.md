@@ -569,3 +569,13 @@ Now you should be able to see more complex examples, such as running
 `./masssprings_sparse ../data/flag.json` or `./masssprings_sparse ../data/skirt.json`:
 
 ![](images/skirt.gif)
+
+
+> ## Notes for TAs editing the README
+>
+> This README file is too complex for [texify](https://github.com/apps/texify) to render. Use [readme2tex](https://github.com/leegao/readme2tex) locally to render the TeX to SVGs.
+>
+> `python -m readme2tex --output README.md README.tex.md --nocdn`
+> 
+> `sed -i 's/invert_in_darkmode\"/invert_in_darkmode\&sanitize=true\"/g' README.md`
+
