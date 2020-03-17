@@ -181,7 +181,7 @@ This leads to a straightforward "local-global" iterative algorithm:
  - Step 1 (local): Given current values of <img src="svgs/980fcd4213d7b5d2ffcc82ec78c27ead.svg?invert_in_darkmode&sanitize=true" align=middle width=10.50225pt height=14.61207pt/> determine <img src="svgs/27ad4bcb9a515705743055d231c7d7c5.svg?invert_in_darkmode&sanitize=true" align=middle width=21.257775pt height=22.83138pt/> for each
    spring.
  - Step 2 (global): Given all <img src="svgs/27ad4bcb9a515705743055d231c7d7c5.svg?invert_in_darkmode&sanitize=true" align=middle width=21.257775pt height=22.83138pt/> vectors, find positions <img src="svgs/980fcd4213d7b5d2ffcc82ec78c27ead.svg?invert_in_darkmode&sanitize=true" align=middle width=10.50225pt height=14.61207pt/> that
-   minimize quadratic energy $\tilde{E}$.
+   minimize quadratic energy <img src="svgs/9674605b99e37d0dbca0fc51ec6b1bc7.svg?invert_in_darkmode&sanitize=true" align=middle width=13.08219pt height=30.2676pt/>.
  - Step 3: if "not satisfied", go to Step 1.
 
 For the purposes of this assignment we will assume that we're "satisfied" after
